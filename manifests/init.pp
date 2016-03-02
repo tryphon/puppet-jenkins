@@ -15,8 +15,18 @@ class jenkins {
     require => Package[jenkins]
   }
 
-  package { jenkins: 
+  package { 'jenkins':
     require => Apt::Sources_list[jenkins]
+  }
+
+  if $debian::squeeze {
+    apt::preferences { 'jenkins':
+      before => Package['jenkins'],
+      content => "Explanation:
+Package: jenkins
+Pin: version 1.611
+Pin-Priority: 1000"
+    }
   }
 
   service { jenkins:
@@ -36,5 +46,3 @@ class jenkins {
     require => Package[jenkins]
   }
 }
-
-

@@ -6,7 +6,7 @@ class jenkins {
 
   apt::key_local { jenkins:
     key => "D50582E6",
-    source => "puppet:///jenkins/apt.key"
+    source => "puppet:///modules/jenkins/apt.key"
   }
 
   file { "/var/lib/jenkins/.gitconfig":
@@ -35,7 +35,7 @@ Pin-Priority: 1000"
   }
 
   file { "/etc/default/jenkins":
-    source => 'puppet:///jenkins/jenkins.default',
+    source => 'puppet:///modules/jenkins/jenkins.default',
     notify => Service[jenkins]
   }
 

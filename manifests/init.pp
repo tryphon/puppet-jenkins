@@ -15,7 +15,11 @@ class jenkins {
     require => Package[jenkins]
   }
 
+<<<<<<< HEAD
   package { 'jenkins':
+=======
+  package { jenkins:
+>>>>>>> Support local jenkins.default file
     require => Apt::Sources_list[jenkins]
   }
 
@@ -35,7 +39,7 @@ Pin-Priority: 1000"
   }
 
   file { "/etc/default/jenkins":
-    source => 'puppet:///modules/jenkins/jenkins.default',
+    source => ['puppet:///files/jenkins/jenkins.default', 'puppet:///modules/jenkins/jenkins.default'],
     notify => Service[jenkins]
   }
 
